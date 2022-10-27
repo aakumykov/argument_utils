@@ -1,9 +1,11 @@
 package com.github.aakumykov.argument_utils;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class ArgumentUtils {
 
+    @NonNull
     public static <T> T checkNotNull(T arg) throws NullPointerException {
         if (null == arg)
             throw new NullPointerException("Argument cannot be null");
