@@ -2,12 +2,19 @@ plugins {
     id 'com.android.library'
 }
 
+project.ext {
+    artifactId = 'argument_utils'
+    groupId = 'com.github.aakumykov'
+}
+
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 16
-        targetSdk 32
+        targetSdk 33
+        versionCode 3
+        versionName "0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -19,6 +26,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+//            withJavadocJar()
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
@@ -28,8 +43,9 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
+
+apply from: '../../publish_local.gradle'
